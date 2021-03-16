@@ -1,0 +1,36 @@
+<%= form_with(url: c_vino_path, model: @vino, local: true) do |f| %>
+    <%= f.text_field :nombre, placeholder: 'nombre vino' %>
+    <div>
+        <% flash.each do |key, value| %>
+            <p style="color:red;"> <%= value %> </p>
+        <% end %>
+    </div>
+    <%= collection_check_boxes(:vino, :cepa_ids, @cepas, :id, :nombre) do |b| %>
+        <%= b.label(:"data-value" => b.value) { b.check_box + b.text }%>
+    <% end %>
+    <%= f.submit 'guardar' %>
+<% end %>
+
+<h2> lista vinos </h2>
+
+<% @vinos.each do |i| %>
+    <ul>
+        <li> <%= i.nombre %> 
+            <ul>
+                <li> <% i.cepas.each do |a| %> 
+                        <%= a.nombre %>
+                        <%= form_with(url: porcen_path, model: @vino_cepa, local: true, method: :patch) do |f| %>
+                            <% if VinoCepa.find_by(vino_id: i.id, cepa_id: a.id).porcentaje == nil %>
+                                <%= f.text_field :porcentaje, value: VinoCepa.find_by(vino_id: i.id, cepa_id: a.id).porcentaje %>
+                                <%= f.submit 'asignar porcentaje' %>
+                            <% else %>
+                                <%= f.text_field :porcentaje, value: VinoCepa.find_by(vino_id: i.id, cepa_id: a.id).porcentaje, disabled: true %>
+                            <% end %>
+                                <%= f.hidden_field :id, value: VinoCepa.find_by(vino_id: i.id, cepa_id: a.id).id %>
+                        <% end %>
+                    <% end %>
+                </li>
+            </ul>
+        </li>
+    </ul>
+<% end %>

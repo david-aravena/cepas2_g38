@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cepa: one
+  vino: one
+  porcentaje_cepa: 1
+
+two:
+  cepa: two
+  vino: two
+  porcentaje_cepa: 1
