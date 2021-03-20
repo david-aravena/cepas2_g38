@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <% if session[:user_id] %>
+      <%= link_to 'cerrar sesion', s_d_path, method: :delete %>
+    <% end %>
     <%= notice %>
     <%= yield %>
   </body>

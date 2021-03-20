@@ -8,8 +8,10 @@
 
 
 VinoCepa.destroy_all
+EnologoVino.destroy_all
 Cepa.destroy_all
 Vino.destroy_all
+Enologo.destroy_all
 
 Cepa.create(
     [
@@ -24,6 +26,29 @@ Cepa.create(
         },
         {
             nombre: 'carmenere'
+        }
+    ]
+)
+
+Enologo.create(
+    [
+        {
+            name: 'rube'
+        },
+        {
+            name:"sode"
+        },
+        {
+            name:"yade"
+        }
+    ]
+);
+
+User.create(
+    [
+        {
+            name: 'peter',
+            password_digest: 'peter'
         }
     ]
 )

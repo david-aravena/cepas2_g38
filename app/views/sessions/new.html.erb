@@ -1,0 +1,31 @@
+<% if params[:nuevo_usuario] %>
+    <h3> crear nuevo usuario </h3>
+    <%= form_with(url: u_c_path, model: @user, local: true) do |f| %>
+        <%= f.text_field :name, placeholder: 'crea tu nickname' %>
+        <%= f.text_field :password_digest, placeholder: 'crea tu contraseña' %>
+        <%= f.submit 'crear'%>
+    <% end %>
+    <form>
+        <input type="submit" name="iniciar_sesion" value="iniciar sesion">
+    </form>
+<% elsif params[:iniciar_sesion] %>
+    <h3> iniciar sesion </h3>
+    <%= form_with(url: s_c_path, model: @user, local: true) do |f| %>
+        <%= f.text_field :name, placeholder: 'escribe tu nickname' %>
+        <%= f.text_field :password_digest, placeholder: 'contraseña' %>
+        <%= f.submit 'entrar'%>
+    <% end %>
+    <form>
+        <input type="submit" name="nuevo_usuario" value="crear nuevo usuario">
+    </form>
+<% else %>
+    <h3> iniciar sesion </h3>
+    <%= form_with(url: s_c_path, model: @user, local: true) do |f| %>
+        <%= f.text_field :name %>
+        <%= f.text_field :password_digest %>
+        <%= f.submit 'crear'%>
+    <% end %>
+    <form>
+        <input type="submit" name="nuevo_usuario" value="crear nuevo usuario">
+    </form>
+<% end%>
